@@ -1,0 +1,17 @@
+[I 22:31:48.601 NotebookApp] JupyterLab extension loaded from /home/ec2-user/anaconda3/lib/python3.7/site-packages/jupyterlab
+[I 22:31:48.601 NotebookApp] JupyterLab application directory is /home/ec2-user/anaconda3/share/jupyter/lab
+[I 22:31:48.604 NotebookApp] Serving notebooks from local directory: /home/ec2-user/codelabs_retail_ml/src
+[I 22:31:48.604 NotebookApp] The Jupyter Notebook is running at:
+[I 22:31:48.604 NotebookApp] http://localhost:8888/
+[I 22:31:48.604 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[I 22:39:20.226 NotebookApp] 302 GET / (127.0.0.1) 0.59ms
+[I 22:39:20.282 NotebookApp] 302 GET /tree? (127.0.0.1) 1.00ms
+[I 22:39:25.559 NotebookApp] 302 POST /login?next=%2Ftree%3F (127.0.0.1) 1.19ms
+[I 00:40:12.264 NotebookApp] 302 GET /?token=089675c7b4de6438a2116bf011a88a821e7a5ce888a307e2 (127.0.0.1) 0.57ms
+[I 00:40:12.474 NotebookApp] 302 GET /tree?token=089675c7b4de6438a2116bf011a88a821e7a5ce888a307e2 (127.0.0.1) 0.76ms
+[I 20:46:47.217 NotebookApp] 302 GET / (127.0.0.1) 0.48ms
+[I 20:46:47.285 NotebookApp] 302 GET /tree? (127.0.0.1) 0.66ms
+[I 20:46:51.389 NotebookApp] 302 POST /login?next=%2Ftree%3F (127.0.0.1) 7.66ms
+[I 20:51:04.418 NotebookApp] 302 GET /?token=8dc7ee6881957ad4dc15bfa12df4ed2eb539c3e4612864a4 (127.0.0.1) 0.50ms
+[I 20:51:04.521 NotebookApp] 302 GET /tree?token=8dc7ee6881957ad4dc15bfa12df4ed2eb539c3e4612864a4 (127.0.0.1) 0.68ms
+[I 21:26:45.189 NotebookApp] Saving file at /utilities.py
