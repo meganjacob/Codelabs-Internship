@@ -7,6 +7,8 @@ dask_df = dd.from_pandas(pandas_df, npartitions=8)
 
 
 #Downcast in order to save memory
+#TODO very nicely done! one thought: you don't want to hardcode the date format since that's likely to vary between datasets; \
+# pass that as a param or global 
 def downcast(df):
     cols = df.dtypes.index.tolist()
     types = df.dtypes.values.tolist()
