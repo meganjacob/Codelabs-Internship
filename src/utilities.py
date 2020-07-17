@@ -7,8 +7,6 @@ dask_df = dd.from_pandas(pandas_df, npartitions=8)
 
 
 #Downcast in order to save memory
-#TODO very nicely done! one thought: you don't want to hardcode the date format since that's likely to vary between datasets; \
-# pass that as a param or global 
 def downcast(df):
     cols = df.dtypes.index.tolist()
     types = df.dtypes.values.tolist()
@@ -24,4 +22,19 @@ def downcast(df):
                 df[cols[i]] = df[cols[i]].astype('category')
     return df  
 
+
+def compress_dataframe(df):
+    """
+    Downcast dataframe and convert objects to categories to save memory
+    """
+    def handle_numeric_downcast(array, type_):
+        return pd.to_numeric(array, downcast=type_)
+
+    for type_ in ['integer', 'float', 'object']:
+        column_list = df.select_dtypes(include=type_)
+
+        if type_ == 'object':
+            df[column_list] = df[column_list].astype('category') 
+        else:
+            df[column_list] = handle_numeric_downcast(df[column_list], type_)
 
