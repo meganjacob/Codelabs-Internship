@@ -1,3 +1,5 @@
+#TODO use "_" per PEP8 conventions ("pandas_df")
+#TODO why hardcode sales when you take take it as an argument and have a more general function to wokr with?
 def univariate_sales_histogram(pandadataframe):
     sales_series = pandadataframe['sales']
     max_sale = sales_series.max()
@@ -13,6 +15,7 @@ def bivariate_sales_by_store(pandadataframe):
     max_sale = sales_series.max()
     pandadataframe.hist(column='sales', by="store_id",bins=100, figsize=(12,8), range=[0,50])
 
+#TODO source files shouldn't call functions; move to .main
 univariate_sales_histogram(pandas_df)
 """The majority of sales are between 0 and 10, with most sales falling at 0."""
 bivariate_sales_by_state(pandas_df)
@@ -21,7 +24,7 @@ bivariate_sales_by_store(pandas_df)
 """In the previous observation, CA was observed to have the most number of 0.0 sales compared to the other two states. However, through this histogram, we see that CA actually has more stores than Texas and Wisconsin. All the graphs of the stores seem pretty similar, but if you observe closely, CA_1, CA_2, CA_3 (especially CA_3), CA_4, TX_1, TX_2 all have sales between 30 and 50 as well, unlike the other stores."""
 
 
-
+#TODO same as above
 def sales_boxplot(dataframeinput):
     sns.boxplot(x=dataframeinput['sales'])
 def sales_box_plot_by_state_id(dataframeinput):
@@ -40,7 +43,7 @@ Since the range for CA_3 is higher than that of every other store, it indicates 
 
 
 
-def heatmap_to_see_missing_data(dataframeinput):
+def heatmap_to_see_missing_data(pandas_df):
     sns.heatmap(pandas_df.isnull(), cbar = False)
 
 heatmap_to_see_missing_data(pandas_df)
