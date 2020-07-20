@@ -35,6 +35,7 @@ def compress_dataframe(df):
         else:
             df[column_list] = handle_numeric_downcast(df[column_list], type_)
 
+
 #TODO when splitting up tasks in multiple functions, ask if it makes the code easier or harder to read. 
 # IMO, these splits make the code harder to understand
 def get_dataframe_of_item_ids(dataframeinput):

@@ -19,7 +19,7 @@ def bivariate_sales_by_store(pandadataframe):
 univariate_sales_histogram(pandas_df)
 """The majority of sales are between 0 and 10, with most sales falling at 0."""
 bivariate_sales_by_state(pandas_df)
-"""Out of all three states, CA has the most number of 0.0 sales (around 700,000 sales at 0.0) as compared to Wisconsin and Texas (around 600,000 sales at 0.0). """
+"""Out of all three states, CA has the most number of 0.0 sales (around 700,000 sales at 0.0) as compared to Wisconsin and Texas (around 600,000 sales at 0.0). This makes sense given CA has a much larger population than the other states."""
 bivariate_sales_by_store(pandas_df)
 """In the previous observation, CA was observed to have the most number of 0.0 sales compared to the other two states. However, through this histogram, we see that CA actually has more stores than Texas and Wisconsin. All the graphs of the stores seem pretty similar, but if you observe closely, CA_1, CA_2, CA_3 (especially CA_3), CA_4, TX_1, TX_2 all have sales between 30 and 50 as well, unlike the other stores."""
 

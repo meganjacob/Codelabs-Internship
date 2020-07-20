@@ -11,7 +11,6 @@ def standardize(input_ser):
     return (input_ser-input_mean)/input_std
 
 
-
 #Unstandarizes a series. 
 def unstandardize(ser):
     return ser*std + mean
@@ -19,10 +18,10 @@ def unstandardize(ser):
 
 #Gives two dataframes. The first one has the stats mean, min, and max, and the second one has the cumulative sums.
 #TODO don't hardcode! what if you only want the mean?
-def stat_feature(df,grouping,col):
-    agg = df.groupby([grouping])[col].agg(['mean','min','max'])
-    cumsum = df.groupby([grouping])[col].shift(periods = 1).agg(['cumsum'])
-    return agg,cumsum 
+def stat_feature(df, grouping, column_list, agg_list=['mean','min','max']):
+    agg = df.groupby([grouping])[column_list].agg(agg_list)
+    cumsum = df.groupby([grouping])[column_list].shift(periods = 1).agg(['cumsum'])
+    return agg, cumsum 
 
 
 #Detrends a dataframe, given the grouping, and column. 
