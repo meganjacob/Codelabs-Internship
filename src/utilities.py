@@ -1,8 +1,3 @@
-#TODO don't read data into /src files, just functions
-pandas_df = pd.read_pickle("./raw_weekly_df.pkl")
-dask_df = dd.from_pandas(pandas_df, npartitions=8)
-
-
 #Downcast in order to save memory
 def downcast(df,date_format):
     cols = df.dtypes.index.tolist()
