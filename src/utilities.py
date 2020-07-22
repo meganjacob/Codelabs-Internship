@@ -99,3 +99,8 @@ def find_missing_weeks_in_entire_dataframe(dataframe):
             #mssing_weeks = find_missing_weeks(upsampled)
             #t([store_id, item_id, missing_weeks])
             
+#Write a function to calculated MAPE weighted by the total sales for a given item across all stores
+def mape(df, item, predict):
+    real = df[(df['item_id'] == item)]['sales'].sum()
+    return np.mean(np.abs((real - predict) / y_true)) * 100
+            
