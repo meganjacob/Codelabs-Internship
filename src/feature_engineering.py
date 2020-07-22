@@ -1,4 +1,6 @@
 import numpy as np
+import pandas as pd
+
 #Given a pandas series, this returns the standarized series(in z-score space).
 #TODO what if you want to standardize multiple columns? is creating global variables a safe way to maintain state?
 stat = dict()
@@ -33,3 +35,33 @@ def cum_stat(df,grouping,col):
 #Detrends a dataframe, given the grouping, and column. 
 def detrend_feature(df,grouping,col):
     return df[col] - df[col].shift(periods=1)
+
+
+
+#The following are the 6 time-related features. Not sure how to use external data for holiday flags and major events
+def month_feature(dataframeinput):
+    return dataframeinput['datetime'].dt.month
+
+def quarter_feature(dataframeinput):
+    return dataframeinput['datetime'].dt.quarter
+    #January-March = 1, April-June = 2, etc.
+    
+def week_of_year_feature(dataframeinput):
+    return dataframeinput['datetime'].dt.weekofyear
+
+def day_of_week_feature(dataframeinput):
+    return dataframeinput['datetime'].dt.dayofweek
+
+def month_year_feature(dataframeinput):
+    year = dataframeinput['datetime'].dt.year
+    month = month_feature(dataframeinput)
+    newdataframe = pd.DataFrame()
+    newdataframe['month'] = month
+    newdataframe['year'] = year
+    return(newdataframe)
+
+def semester_feature(dataframeinput):
+    dataframeinputcopy = dataframeinput
+    dataframeinputcopy['quarter'] = quarter_feature(dataframeinput)
+    dataframeinputcopy['semester'] = np.where(dataframeinputcopy.quarter.isin([1,2]),1,2)
+    return dataframeinputcopy[['datetime', 'semester']].head()
