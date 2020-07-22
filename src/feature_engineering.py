@@ -1,3 +1,4 @@
+import numpy as np
 #Given a pandas series, this returns the standarized series(in z-score space).
 #TODO what if you want to standardize multiple columns? is creating global variables a safe way to maintain state?
 stat = dict()
