@@ -65,3 +65,19 @@ def semester_feature(dataframeinput):
     dataframeinputcopy['quarter'] = quarter_feature(dataframeinput)
     dataframeinputcopy['semester'] = np.where(dataframeinputcopy.quarter.isin([1,2]),1,2)
     return dataframeinputcopy[['datetime', 'semester']].head()
+
+#average number of items sold - split by day and month
+def average_number_of_items_by_month(dataframeinput, store_id, year, month):
+    df = dataframeinput.loc[(dataframeinput['store_id'] == store_id) & (dataframeinput['datetime'].dt.year == year) & (dataframeinput['datetime'].dt.month == month), 'sales']
+    return df.sum() / df.count()
+
+def average_number_of_items_by_year(dataframeinput, store_id, year):
+    df = dataframeinput.loc[(dataframeinput['store_id'] == store_id) & (dataframeinput['datetime'].dt.year == year), 'sales']
+    return df.sum() / df.count()
+
+def last_time_product_sold(dataframeinput, item_id):
+    return dataframeinput.loc[dataframeinput['item_id'] == item_id, 'datetime'].max()
+
+def sum_of_sales(dataframeinput, item_id, store_id, weeks):
+    days = pandas_df['datetime'].max() - timedelta(weeks * 7)
+    return dataframeinput.loc[(dataframeinput['item_id'] == item_id) & (dataframeinput['store_id'] == store_id) & (dataframeinput['datetime'] >= days), 'sales'].sum()
