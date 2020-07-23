@@ -15,7 +15,7 @@ def downcast(df,date_format):
     return df  
 
 
-#This is pseudocode; made a few changes to bring it closer to completion, but can't guarantee this works
+# This is pseudocode; made a few changes to bring it closer to completion, but can't guarantee this works
 def compress_dataframe(df):
     """
     Downcast dataframe and convert objects to categories to save memory
