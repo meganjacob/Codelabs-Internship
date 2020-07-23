@@ -15,20 +15,30 @@ def downcast(df,date_format):
     return df  
 
 
+#This is pseudocode; made a few changes to bring it closer to completion, but can't guarantee this works
 def compress_dataframe(df):
     """
     Downcast dataframe and convert objects to categories to save memory
     """
+    import numpy as np
+
     def handle_numeric_downcast(array, type_):
         return pd.to_numeric(array, downcast=type_)
 
-    for type_ in ['integer', 'float', 'object']:
-        column_list = df.select_dtypes(include=type_)
+    numeric_lookup_dict = {
+        "integer" : np.integer,
+        "float" : np.floating,
+        "object" : "object"
+    }
+
+    for type_ in ["integer", "float", "object"]:
+        column_list = df.select_dtypes(include=numeric_lookup_dict[type_])
 
         if type_ == 'object':
             df[column_list] = df[column_list].astype('category') 
         else:
             df[column_list] = handle_numeric_downcast(df[column_list], type_)
+
 
 #TODO when splitting up tasks in multiple functions, ask if it makes the code easier or harder to read. 
 # IMO, these splits make the code harder to understand
@@ -65,6 +75,10 @@ def find_missing_weeks_in_entire_dataframe(dataframe):
 
 
 #Write a function to calculated MAPE weighted by the total sales for a given item across all stores
+#TODO start functions with a verb (e.g., calc_MAPE). see PEP8 for more style ideas
+#TODO function should take two series (real and predict) and work for all items
+#TODO function should calculate the MAPE for each row just like you've done below, but should take a weighted mean based on your 'real' column 
+# (we'll ignore hierarchical elements for now)
 def mape(df, item, predict):
     real = df[(df['item_id'] == item)]['sales'].sum()
     return np.mean(np.abs((real - predict) / y_true)) * 100
