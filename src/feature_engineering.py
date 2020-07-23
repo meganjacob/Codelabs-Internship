@@ -67,6 +67,7 @@ def semester_feature(dataframeinput):
     return dataframeinputcopy[['datetime', 'semester']].head()
 
 #average number of items sold - split by day and month
+#TODO ideally we wouldn't hardcode here; we'd pass in state from somewhere else (config, globals, other module, etc.)
 def average_number_of_items_by_month(dataframeinput, store_id, year, month):
     df = dataframeinput.loc[(dataframeinput['store_id'] == store_id) & (dataframeinput['datetime'].dt.year == year) & (dataframeinput['datetime'].dt.month == month), 'sales']
     return df.sum() / df.count()
