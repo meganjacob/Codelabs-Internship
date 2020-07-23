@@ -15,7 +15,7 @@ def standardize(df,col):
 #Unstandarizes a series. 
 def unstandardize(ser,col):
     global stat
-    return ser*stat[col][0] + stat[col][1]
+    return (ser*stat[col][0]) + stat[col][1]
 
 
 #Gives two dataframes. The first one has the stats mean, min, and max, and the second one has the cumulative sums.

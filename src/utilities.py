@@ -64,8 +64,6 @@ def find_missing_weeks_in_entire_dataframe(dataframe):
     #TODO after you upsample and fill the missing rows with NaNs, you should be able to use .grouby(grouping_cols).count() to get the number of missing. no for-loops!
 
 
-find_missing_weeks_in_entire_dataframe(pandas_df)
-
 #Write a function to calculated MAPE weighted by the total sales for a given item across all stores
 def mape(df, item, predict):
     real = df[(df['item_id'] == item)]['sales'].sum()
