@@ -82,7 +82,13 @@ def find_missing_weeks_in_entire_dataframe(dataframe):
 def mape(df, item, predict):
     real = df[(df['item_id'] == item)]['sales'].sum()
     return np.mean(np.abs((real - predict) / y_true)) * 100
- 
+
+def split_df (df):
+    df_copy = df.copy()
+    train_set = df_copy.sample(frac=0.6, random_state=0)
+    test_set = df_copy.drop(train_set.index).sample(frac=0.5, random_state=0)
+    holdout_set = df_copy.drop(train_set.index)
+    return train_set, test_set, holdout_set
    
     
 
