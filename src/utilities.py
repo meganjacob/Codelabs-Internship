@@ -83,6 +83,9 @@ def mape(df, item, predict):
     real = df[(df['item_id'] == item)]['sales'].sum()
     return np.mean(np.abs((real - predict) / y_true)) * 100
 
+
+#TODO randomly sampling doesn't work for time series data; you wouldn't want to train on yesterday and tomorrow, but predict on today, right?
+#NOTE nice job using indices to filter; this is the fastest way IRL
 def split_df (df):
     df_copy = df.copy()
     train_set = df_copy.sample(frac=0.6, random_state=0)
