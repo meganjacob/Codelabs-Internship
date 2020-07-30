@@ -1,5 +1,8 @@
 #Downcast in order to save memory
+
 def downcast(df,date_format):
+    import numpy as np
+    import pandas as pd
     cols = df.dtypes.index.tolist()
     types = df.dtypes.values.tolist()
     for i,t in enumerate(types):
@@ -75,13 +78,12 @@ def find_missing_weeks_in_entire_dataframe(dataframe):
 
 
 #Write a function to calculated MAPE weighted by the total sales for a given item across all stores
-#TODO start functions with a verb (e.g., calc_MAPE). see PEP8 for more style ideas
 #TODO function should take two series (real and predict) and work for all items
 #TODO function should calculate the MAPE for each row just like you've done below, but should take a weighted mean based on your 'real' column 
 # (we'll ignore hierarchical elements for now)
-def mape(df, item, predict):
-    real = df[(df['item_id'] == item)]['sales'].sum()
-    return np.mean(np.abs((real - predict) / y_true)) * 100
+def calc_mape(real, predict):
+    import numpy as np
+    return np.mean(np.abs((real - predict) / (np.abs(real)+1))) * 100
 
 
 #TODO randomly sampling doesn't work for time series data; you wouldn't want to train on yesterday and tomorrow, but predict on today, right?

@@ -1,25 +1,30 @@
 #Write a function to train a lightGBM model using a dictionary of parameters, and another function to output predictions of that function. Store the lightGBM modeling object in a global variable called MODELING_DICT for use in the second function.    
 #TODO start functions with verbs
-def lgbm_train(param):
-    #TODO should this be using the regression module, not the classifier module?
+
+MODELING_DICT = {}
+
+
+
+def train_lgbm(param,X_train,Y_train):
     #TODO don't pass data as a global; take in two dataframes as arguments that you'll need to convert to LGBM objects
     #TODO modeling dict should be a dictionary; what if you want to run multiple models?
-    global MODELING_DICT
-    MODELING_DICT = LGBMClassifier(**param)
-    MODELING_DICT.fit(X_train, y_train)
+    import lightgbm as lgb
+    model = lgb.LGBMRegressor(**param)
+    model.fit(X_train, Y_train)
+    MODELING_DICT["LGBM"] = model
     
     
 def lgbm_predict(features):
     #TODO modeling dict should be a dictionary; what if you want to run multiple models?
-    return MODELING_DICT.predict(features)
+    return MODELING_DICT["LGBM"].predict(features)
 
 
 
 #Create in-sample residual plots for either LightGBM or XGBoost (y-axis: actual value; x-axis: (predicted - actual))
 #TODO this won't run, right? what's the issue here?
 def lgbm_plot(actual, predict):
-    plt.scatter(predicted - actual, actual)
-    
+    import matplotlib.pyplot as plt
+    plt.scatter(predict - actual, actual)
 
 
     
