@@ -6,8 +6,6 @@ MODELING_DICT = {}
 
 
 def train_lgbm(param,X_train,Y_train):
-    #TODO don't pass data as a global; take in two dataframes as arguments that you'll need to convert to LGBM objects
-    #TODO modeling dict should be a dictionary; what if you want to run multiple models?
     import lightgbm as lgb
     model = lgb.LGBMRegressor(**param)
     model.fit(X_train, Y_train)
@@ -15,7 +13,6 @@ def train_lgbm(param,X_train,Y_train):
     
     
 def lgbm_predict(features):
-    #TODO modeling dict should be a dictionary; what if you want to run multiple models?
     return MODELING_DICT["LGBM"].predict(features)
 
 
