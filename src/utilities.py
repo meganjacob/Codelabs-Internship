@@ -85,6 +85,9 @@ def calc_mape(real, predict):
     import numpy as np
     return np.mean(np.abs((real - predict) / (np.abs(real)+1))) * 100
 
+def calc_rmse(real, predict):
+    mse = sklearn.metrics.mean_squared_error(real, predict)
+    rmse = math.sqrt(mse)
 
 #TODO randomly sampling doesn't work for time series data; you wouldn't want to train on yesterday and tomorrow, but predict on today, right?
 #NOTE nice job using indices to filter; this is the fastest way IRL
